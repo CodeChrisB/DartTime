@@ -13,6 +13,7 @@ public class TargetSpawner : MonoBehaviour
     public GameObject Target;
     public GameObject TargetContainer;
     public float CycleTime = 4f;
+    public int Score { get; private set; }
 
     static int TargetCount=0;
     // Start is called before the first frame update
@@ -40,4 +41,8 @@ public class TargetSpawner : MonoBehaviour
         }
     }
 
+    internal void addPoints(int score)
+    {
+        Score += score;
+    }
 }
