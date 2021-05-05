@@ -45,4 +45,10 @@ public class TargetSpawner : MonoBehaviour
     {
         Score += score;
     }
+
+    internal int subtractPoints()
+    {
+        Score -= 25;
+        return -25;
+    }
 }

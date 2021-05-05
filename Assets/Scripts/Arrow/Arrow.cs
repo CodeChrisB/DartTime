@@ -28,26 +28,29 @@ public class Arrow : MonoBehaviour
 
             int score = int.Parse(other.transform.name);
 
-            ts.addPoints(score);
-            num.Animate(new NumAnimData(ts.Score, 5));
+  
             Debug.Log("hit target");
+            ts.addPoints(score);
             ts.SpawnTarget();
-            ScoreText(score,gameObject.transform);
+            ScoreText(score,gameObject.transform.position);
             Destroy(other.transform.parent.gameObject);
 
         }
         else
         {
             Debug.Log("hit wall");
+            ScoreText(ts.subtractPoints(),gameObject.transform.position);
         }
+        num.Animate(new NumAnimData(ts.Score, 0.5f));
         Destroy(gameObject);
     }
-    private void ScoreText(int score, Transform pos)
+    private void ScoreText(int score, Vector3 pos)
     {
         GameObject ob = Instantiate(Text);
         var mesh = ob.GetComponent<TextMeshPro>();
-        mesh.text = score.ToString();
-        ob.transform.position = pos.position;
+        mesh.text =  score.ToString();
+
+        ob.transform.position = pos;
         LeanTween.moveLocalY(ob, ob.transform.position.y+0.2f, 0.5f);
        Destroy(ob, 0.5f);
     }
