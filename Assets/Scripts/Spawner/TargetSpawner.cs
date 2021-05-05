@@ -30,7 +30,7 @@ public class TargetSpawner : MonoBehaviour
 
             GameObject target = Instantiate(Target);
             Vector3 pos = target.transform.position;
-            pos.x = -4.211f;
+            pos.x = -3.52f;
             pos.z = z;
             pos.y = y;
 
