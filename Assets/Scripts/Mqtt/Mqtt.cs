@@ -56,7 +56,8 @@ public class Mqtt : MonoBehaviour
     //Mqtt Requests
     public static void MqttHitTarget() => Publish("game/"+username+"/hit", "Target was hit!");
     public static void MqttMissTarget() => Publish("game/"+username+"/miss", "Target was miss!");
-    public static void MqttCurrentScore(int score) => Publish("game/"+username+"/score", score.ToString());
+    public static void MqttCurrentScore(int score) => Publish("game/"+username+"/score/total", score.ToString());
+    public static void MqttScore(int score) => Publish("game/" + username + "/score/latest", score.ToString());
     public static void MqttCurrentDarts(int amount) => Publish("game/"+username+"/darts", amount.ToString());
     public static void MqttTimeLeft(int time) => Publish("game/"+username+"/time", time.ToString());
 }

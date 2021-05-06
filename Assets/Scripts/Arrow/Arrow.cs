@@ -28,8 +28,6 @@ public class Arrow : MonoBehaviour
 
             int score = int.Parse(other.transform.name);
 
-  
-            Debug.Log("hit target");
             Mqtt.MqttHitTarget();
             ts.addPoints(score);
             ts.SpawnTarget();
@@ -40,7 +38,6 @@ public class Arrow : MonoBehaviour
         else
         {
             Mqtt.MqttMissTarget();
-            Debug.Log("hit wall");
             ScoreText(ts.subtractPoints(),gameObject.transform.position);
         }
         num.Animate(new NumAnimData(ts.Score, 0.5f));

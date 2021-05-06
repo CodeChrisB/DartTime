@@ -62,11 +62,21 @@ public class TargetSpawner : MonoBehaviour
     internal void addPoints(int score)
     {
         Score += score;
+        PostMqtt(score);
     }
 
     internal int subtractPoints()
     {
         Score += SubtractedScore;
+        PostMqtt(SubtractedScore);
         return SubtractedScore;
+    }
+
+    private void PostMqtt(int score)
+    {
+        //send the latest score that got added/subtracted
+        Mqtt.MqttScore(score);
+        //send the full score
+        Mqtt.MqttCurrentScore(Score);
     }
 }
