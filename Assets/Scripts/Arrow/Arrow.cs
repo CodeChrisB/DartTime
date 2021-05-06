@@ -15,7 +15,6 @@ public class Arrow : MonoBehaviour
     {
         ts  = (TargetSpawner)GameObject.Find("Scripts").GetComponent(typeof(TargetSpawner));
         num = (NumAnimController)GameObject.Find("Scripts").GetComponent(typeof(NumAnimController));
-       
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -40,9 +39,13 @@ public class Arrow : MonoBehaviour
             Mqtt.MqttMissTarget();
             ScoreText(ts.subtractPoints(),gameObject.transform.position);
         }
+        
+        
         num.Animate(new NumAnimData(ts.Score, 0.5f));
         Destroy(gameObject);
     }
+
+
     private void ScoreText(int score, Vector3 pos)
     {
         GameObject ob = Instantiate(Text);
@@ -51,6 +54,6 @@ public class Arrow : MonoBehaviour
 
         ob.transform.position = pos;
         LeanTween.moveLocalY(ob, ob.transform.position.y+0.2f, 0.5f);
-       Destroy(ob, 0.5f);
+        Destroy(ob, 0.5f);
     }
 }

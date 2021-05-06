@@ -16,6 +16,12 @@ public class Mqtt : MonoBehaviour
     public static string username = "Chris";
 
 
+    /*
+            PlayerPrefs.SetString("username", username);
+            playerScore  =  PlayerPrefs.GetInt("score");
+     */
+
+
     void Start()
     {
         client = new MqttClient(IP);

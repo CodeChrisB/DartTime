@@ -11,9 +11,9 @@ public class TargetSpawner : MonoBehaviour
     public float minY = 0.7f;
 
     public GameObject Target;
-    public GameObject TargetStand;
-    public GameObject WallSpawn;
     public GameObject TargetContainer;
+    public GameObject ScreenLight;
+    public GameObject RightLight;
 
     public int SubtractedScore = -25;
     public int Score { get; private set; }
@@ -51,26 +51,38 @@ public class TargetSpawner : MonoBehaviour
 
     void SpawnSpecial()
     {
-        Vector3 pos = WallSpawn.transform.position;
-        pos.x = Random.Range(-3.5f, 0);
-        pos.y = Random.Range(0.5f, 0.5f);
-        GameObject target = Instantiate(TargetStand);
-        target.transform.position = pos;
-        target.transform.parent = WallSpawn.transform;
+      //todo
     }
 
     internal void addPoints(int score)
     {
         Score += score;
         PostMqtt(score);
+        SetLight(Color.green);
     }
+
 
     internal int subtractPoints()
     {
         Score += SubtractedScore;
         PostMqtt(SubtractedScore);
+        SetLight(Color.red);
         return SubtractedScore;
     }
+
+    private void SetLight(Color color)
+    {
+        ScreenLight.GetComponent<Light>().color = color;
+        RightLight.GetComponent<Light>().color = color;
+        LeanTween.delayedCall(0.5f, ResetLight);
+
+    }
+    private void ResetLight()
+    {
+        ScreenLight.GetComponent<Light>().color = Color.yellow;
+        RightLight.GetComponent<Light>().color = Color.yellow;
+    }
+
 
     private void PostMqtt(int score)
     {
