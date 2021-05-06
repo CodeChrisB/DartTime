@@ -1006,6 +1006,7 @@ GameObject:
   - component: {fileID: 645179197}
   - component: {fileID: 645179198}
   - component: {fileID: 645179199}
+  - component: {fileID: 645179200}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -1044,9 +1045,10 @@ MonoBehaviour:
   maxY: 3.1
   minY: 0.7
   Target: {fileID: 3232340571185678728, guid: 1b694f7a8a1b69c43924d602994af9a8, type: 3}
+  TargetStand: {fileID: 0}
+  WallSpawn: {fileID: 0}
   TargetContainer: {fileID: 1222759846}
-  SpecialTargetPos: {fileID: 1370772897}
-  CycleTime: 4
+  SubtractedScore: -25
 --- !u!114 &645179199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,6 +1063,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _numberText: {fileID: 1095322233}
   m_currentNum: 0
+--- !u!114 &645179200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645179196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aebc737f3e47074eadce7812e2dc0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &692108619
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1284,6 +1298,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f6bf2b372bf5ea43977fb96a1b11e88, type: 3}
+--- !u!1 &769479869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 769479870}
+  m_Layer: 0
+  m_Name: DartContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &769479870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769479869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.229, y: 1.0264, z: -1.364}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 804517228}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &770178794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1496,6 +1540,7 @@ Transform:
   m_Children:
   - {fileID: 1222759847}
   - {fileID: 1369937873}
+  - {fileID: 769479870}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3762,7 +3807,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Arrow: {fileID: 3113705466090427948, guid: 3fbf05b0d6c0f69408f927bbd609419e, type: 3}
+  FakeArrow: {fileID: 3762996809863042590, guid: 08fcf6486c7776d4db65bd79cc11bae5, type: 3}
   Player: {fileID: 963194225}
+  DartPos: {fileID: 769479869}
   speed: 500
 --- !u!4 &2088493797 stripped
 Transform:
