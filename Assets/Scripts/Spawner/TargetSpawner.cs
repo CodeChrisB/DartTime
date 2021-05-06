@@ -30,11 +30,6 @@ public class TargetSpawner : MonoBehaviour
         {
             //No matter how often spawn methods will be called there only ever will be 3 targets on the screen
             SpawnNormal();
-
-                if(WallSpawn.transform.childCount==0)
-                    SpawnSpecial();
-                else
-                    SpawnNormal(); 
         }
     }
 

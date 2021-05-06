@@ -30,6 +30,7 @@ public class Arrow : MonoBehaviour
 
   
             Debug.Log("hit target");
+            Mqtt.MqttHitTarget();
             ts.addPoints(score);
             ts.SpawnTarget();
             ScoreText(score,gameObject.transform.position);
@@ -38,6 +39,7 @@ public class Arrow : MonoBehaviour
         }
         else
         {
+            Mqtt.MqttMissTarget();
             Debug.Log("hit wall");
             ScoreText(ts.subtractPoints(),gameObject.transform.position);
         }
