@@ -11,14 +11,16 @@ public class TargetSpawner : MonoBehaviour
     public float minY = 0.7f;
 
     public GameObject Target;
+    public GameObject TargetStand;
+    public GameObject WallSpawn;
     public GameObject TargetContainer;
-    public float CycleTime = 4f;
+
+    public int SubtractedScore = -25;
     public int Score { get; private set; }
 
-    static int TargetCount=0;
-    // Start is called before the first frame update
     void Start()
     {
+        SpawnTarget();
         SpawnTarget();
     }
 
@@ -26,19 +28,40 @@ public class TargetSpawner : MonoBehaviour
     {
         if (TargetContainer.transform.childCount < 4)
         {
-            float z = Random.Range(minZ, maxZ);
-            float y = Random.Range(minY, maxY);
+            //No matter how often spawn methods will be called there only ever will be 3 targets on the screen
+            SpawnNormal();
 
-            GameObject target = Instantiate(Target);
-            Vector3 pos = target.transform.position;
-            pos.x = -3.52f;
-            pos.z = z;
-            pos.y = y;
-
-            target.transform.position = pos;
-            target.transform.parent = TargetContainer.transform;
-            Debug.Log(TargetCount);
+                if(WallSpawn.transform.childCount==0)
+                    SpawnSpecial();
+                else
+                    SpawnNormal(); 
         }
+    }
+
+    private void SpawnNormal()
+    {
+        float z = Random.Range(minZ, maxZ);
+        float y = Random.Range(minY, maxY);
+
+        GameObject target = Instantiate(Target);
+        Vector3 pos = target.transform.position;
+        pos.x = -3.52f;
+        pos.z = z;
+        pos.y = y;
+
+        target.transform.position = pos;
+        target.transform.parent = TargetContainer.transform;
+    }
+
+
+    void SpawnSpecial()
+    {
+        Vector3 pos = WallSpawn.transform.position;
+        pos.x = Random.Range(-3.5f, 0);
+        pos.y = Random.Range(0.5f, 0.5f);
+        GameObject target = Instantiate(TargetStand);
+        target.transform.position = pos;
+        target.transform.parent = WallSpawn.transform;
     }
 
     internal void addPoints(int score)
@@ -48,7 +71,7 @@ public class TargetSpawner : MonoBehaviour
 
     internal int subtractPoints()
     {
-        Score -= 25;
-        return -25;
+        Score += SubtractedScore;
+        return SubtractedScore;
     }
 }
