@@ -5,7 +5,7 @@
 ### Base topic
 
 ```
-string baseTopic = 'x6et/q8zl/' //df
+string baseTopic = 'x6et/q8zl/'
 ```
 
 Description | Topic | Implemented
