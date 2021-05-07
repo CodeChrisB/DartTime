@@ -14,7 +14,7 @@ public class SpawnArrow : MonoBehaviour
    
     private List<GameObject> darts = new List<GameObject>();
     public float speed = 100f;
-    int dartAmount = 5;
+    int dartAmount = 30;
 
     bool canShoot = true;
 

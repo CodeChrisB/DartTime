@@ -16,34 +16,15 @@ public class Mqtt : MonoBehaviour
     public static string username = "Chris";
 
 
-    /*
-            PlayerPrefs.SetString("username", username);
-            playerScore  =  PlayerPrefs.GetInt("score");
-     */
-
-
     void Start()
     {
+        username = PlayerPrefs.GetString(PlayerKeys.USERNAME);
         client = new MqttClient(IP);
         client.MqttMsgPublishReceived += ReceiveMessage;
         client.Subscribe(new string[] { baseTopic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
         client.Connect(baseTopic);
 
-
-
-        Task.Run(() =>
-        {
-            if (client.IsConnected)
-            {
-                Publish("game/Chris", msg);
-            }
-        });
-
-        MqttHitTarget();
-        MqttMissTarget();
-        MqttCurrentScore(760);
-        MqttCurrentDarts(25);
-        MqttTimeLeft(17);
+        MqttStartGame();
     }
 
     private static byte[] Encode(string text)
@@ -60,6 +41,7 @@ public class Mqtt : MonoBehaviour
     }
 
     //Mqtt Requests
+    public static void MqttStartGame() => Publish("game/"+username,username +" started a game." );
     public static void MqttHitTarget() => Publish("game/"+username+"/hit", "Target was hit!");
     public static void MqttMissTarget() => Publish("game/"+username+"/miss", "Target was miss!");
     public static void MqttCurrentScore(int score) => Publish("game/"+username+"/score/total", score.ToString());

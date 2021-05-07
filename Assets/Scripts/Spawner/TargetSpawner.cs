@@ -14,6 +14,7 @@ public class TargetSpawner : MonoBehaviour
     public GameObject TargetContainer;
     public GameObject ScreenLight;
     public GameObject RightLight;
+    public GameObject RoomLight;
 
     public int SubtractedScore = -25;
     public int Score { get; private set; }
@@ -74,6 +75,7 @@ public class TargetSpawner : MonoBehaviour
     {
         ScreenLight.GetComponent<Light>().color = color;
         RightLight.GetComponent<Light>().color = color;
+        RoomLight.GetComponent<Light>().color = color;
         LeanTween.delayedCall(0.5f, ResetLight);
 
     }
@@ -81,6 +83,8 @@ public class TargetSpawner : MonoBehaviour
     {
         ScreenLight.GetComponent<Light>().color = Color.yellow;
         RightLight.GetComponent<Light>().color = Color.yellow;
+        RoomLight.GetComponent<Light>().color = Color.yellow;
+
     }
 
 
