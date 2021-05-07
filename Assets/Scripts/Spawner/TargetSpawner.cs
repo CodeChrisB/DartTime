@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TargetSpawner : MonoBehaviour
@@ -15,14 +16,32 @@ public class TargetSpawner : MonoBehaviour
     public GameObject ScreenLight;
     public GameObject RightLight;
     public GameObject RoomLight;
+    public TMP_Text Time;
+    public int TimeLeft = 60;
 
     public int SubtractedScore = -25;
     public int Score { get; private set; }
 
     void Start()
     {
+        StartTimer();
         SpawnTarget();
         SpawnTarget();
+    }
+
+    private void StartTimer()
+    {
+        Time.text = TimeLeft.ToString();
+        Mqtt.MqttTimeLeft(TimeLeft);
+        LeanTween.delayedCall(1, SubtractTimer);
+    }
+
+    private void SubtractTimer()
+    {
+        TimeLeft--;
+        Mqtt.MqttTimeLeft(TimeLeft);
+        LeanTween.delayedCall(1, SubtractTimer);
+        Time.text = TimeLeft.ToString();
     }
 
     public void SpawnTarget()

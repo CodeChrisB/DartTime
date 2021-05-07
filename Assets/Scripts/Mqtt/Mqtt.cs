@@ -16,7 +16,7 @@ public class Mqtt : MonoBehaviour
     public static string username = "Chris";
 
 
-    void Start()
+    void Awake()
     {
         username = PlayerPrefs.GetString(PlayerKeys.USERNAME);
         client = new MqttClient(IP);
