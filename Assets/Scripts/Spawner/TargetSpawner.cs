@@ -166,7 +166,7 @@ public class TargetSpawner : MonoBehaviour
 
     public void EndGame()
     {
-        GameStats stats = new GameStats("Muss ich implementieren", Score, PlayerPrefs.GetInt(PlayerKeys.LEVEL));
+        GameStats stats = new GameStats(PlayerPrefs.GetString(PlayerKeys.USERNAME), Score, PlayerPrefs.GetInt(PlayerKeys.LEVEL));
         Mqtt.MqttGameStats(stats);
     }
 }

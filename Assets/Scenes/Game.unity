@@ -1498,7 +1498,7 @@ MonoBehaviour:
   RightLight: {fileID: 1943327}
   RoomLight: {fileID: 871451903}
   Time: {fileID: 1319740065}
-  TimeLeft: 60
+  TimeLeft: 5
   SubtractedScore: -25
 --- !u!114 &645179199
 MonoBehaviour:

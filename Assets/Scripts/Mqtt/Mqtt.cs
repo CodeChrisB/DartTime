@@ -37,7 +37,7 @@ public class Mqtt : MonoBehaviour
     }
     private static void PublishUser(string topic,string msg)
     {
-        client.Publish(baseTopic+BuildTopic(topic)+"/"+username, Encode(buildJson(msg)));
+        client.Publish(baseTopic+BuildUserTopic(topic), Encode(buildJson(msg)));
     }
 
     private static void Publish(string topic, string msg)
@@ -46,21 +46,12 @@ public class Mqtt : MonoBehaviour
     }
     private static string buildJson(string data)
     {
-        string s = "{\ndata:\n" + data + ",\ntime:"+GetTime()+"\n}";
-
-        return s;
+        return "{\ndata:\n" + data + ",\ntime:"+GetTime()+"\n}";
     }
-
-    private static string GetTime()
-    {
-        return DateTime.Now.ToString();
-    }
-
+    private static string GetTime() => DateTime.Now.ToString();
     private static string Base => "game/";
-    private static string BuildTopic(string topic)
-    {
-        return Base + topic;
-    }
+    private static string BuildUserTopic(string topic) => Base + username + "/" + topic;
+    private static string BuildTopic(string topic) => Base + topic;
 
     //Mqtt Requests
     public static void MqttStartGame() => PublishUser("", "Game started");
