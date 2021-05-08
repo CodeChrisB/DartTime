@@ -66,4 +66,5 @@ public class Mqtt : MonoBehaviour
     public static void MqttCurrentMultiplier(int multiplier) => Publish("score/multiplier", multiplier.ToString());
     public static void MqttCurrentDarts(int amount) => Publish("/darts", amount.ToString());
     public static void MqttTimeLeft(int time) => Publish("/time", time.ToString());
+    public static void MqttDifficulty(int level) => Publish("/difficulty", level.ToString());
 }

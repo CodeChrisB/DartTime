@@ -17,11 +17,6 @@ public class MainButtons : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
-
-
-
-
-
     public void Start()
     {
         //Adds a listener to the main input field and invokes a method when the value changes.
@@ -42,5 +37,12 @@ public class MainButtons : MonoBehaviour
             buttonText.text = "Input Name";
 
         }
+    }
+
+    public void OnDropdownValueChange(int value)
+    {
+        Debug.Log(value);
+        PlayerPrefs.SetInt(PlayerKeys.LEVEL, value);
+
     }
 }
