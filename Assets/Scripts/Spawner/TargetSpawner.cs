@@ -17,7 +17,7 @@ public class TargetSpawner : MonoBehaviour
     public GameObject RightLight;
     public GameObject RoomLight;
     public TMP_Text Time;
-    public int TimeLeft = 60;
+    public int TimeLeft = 5;
 
     public int SubtractedScore = -25;
     public int Score { get; private set; }
@@ -44,8 +44,15 @@ public class TargetSpawner : MonoBehaviour
     private void SubtractTimer()
     {
         TimeLeft--;
+        if (TimeLeft == 0)
+        {
+            LeanTween.cancelAll();
+            EndGame();
+        }else if (TimeLeft > 0)
+        {
+            LeanTween.delayedCall(1, SubtractTimer);
+        }
         Mqtt.MqttTimeLeft(TimeLeft);
-        LeanTween.delayedCall(1, SubtractTimer);
         Time.text = TimeLeft.ToString();
     }
 
@@ -155,5 +162,11 @@ public class TargetSpawner : MonoBehaviour
         Mqtt.MqttScore(score*Multiplier);
         //send the full score
         Mqtt.MqttCurrentScore(Score);
+    }
+
+    public void EndGame()
+    {
+        GameStats stats = new GameStats("Muss ich implementieren", Score, PlayerPrefs.GetInt(PlayerKeys.LEVEL));
+        Mqtt.MqttGameStats(stats);
     }
 }

@@ -35,7 +35,12 @@ public class Mqtt : MonoBehaviour
     {
         throw new NotImplementedException();
     }
-    private static void Publish(string topic,string msg)
+    private static void PublishUser(string topic,string msg)
+    {
+        client.Publish(baseTopic+BuildTopic(topic)+"/"+username, Encode(buildJson(msg)));
+    }
+
+    private static void Publish(string topic, string msg)
     {
         client.Publish(baseTopic + BuildTopic(topic), Encode(buildJson(msg)));
     }
@@ -51,20 +56,25 @@ public class Mqtt : MonoBehaviour
         return DateTime.Now.ToString();
     }
 
-    private static string Base => "game/" + username;
+    private static string Base => "game/";
     private static string BuildTopic(string topic)
     {
         return Base + topic;
     }
 
     //Mqtt Requests
-    public static void MqttStartGame() => Publish("", "Game started");
-    public static void MqttHitTarget() => Publish("/hit", "Target was hit!");
-    public static void MqttMissTarget() => Publish("/miss", "Target was missed!");
-    public static void MqttCurrentScore(int score) => Publish("/score/total", score.ToString());
-    public static void MqttScore(int score) => Publish("/score/latest", score.ToString());
-    public static void MqttCurrentMultiplier(int multiplier) => Publish("score/multiplier", multiplier.ToString());
-    public static void MqttCurrentDarts(int amount) => Publish("/darts", amount.ToString());
-    public static void MqttTimeLeft(int time) => Publish("/time", time.ToString());
-    public static void MqttDifficulty(int level) => Publish("/difficulty", level.ToString());
+    public static void MqttStartGame() => PublishUser("", "Game started");
+    public static void MqttHitTarget() => PublishUser("hit", "Target was hit!");
+    public static void MqttMissTarget() => PublishUser("miss", "Target was missed!");
+    public static void MqttCurrentScore(int score) => PublishUser("score/total", score.ToString());
+    public static void MqttScore(int score) => PublishUser("score/latest", score.ToString());
+    public static void MqttCurrentMultiplier(int multiplier) => PublishUser("score/multiplier", multiplier.ToString());
+    public static void MqttCurrentDarts(int amount) => PublishUser("darts", amount.ToString());
+    public static void MqttTimeLeft(int time) => PublishUser("time", time.ToString());
+    public static void MqttDifficulty(int level) => PublishUser("difficulty", level.ToString());
+    
+    public static void MqttGameStats(GameStats stats)
+    {
+        Publish("stats", JsonUtility.ToJson(stats).ToString());
+    }
 }
