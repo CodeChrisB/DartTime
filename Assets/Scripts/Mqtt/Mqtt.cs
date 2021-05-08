@@ -51,13 +51,15 @@ public class Mqtt : MonoBehaviour
         return DateTime.Now.ToString();
     }
 
+    private static string Base => "game/" + username;
+
     //Mqtt Requests
-    public static void MqttStartGame() => Publish("game/"+username,buildJson("Game started"));
-    public static void MqttHitTarget() => Publish("game/"+username+"/hit", buildJson("Target was hit!"));
-    public static void MqttMissTarget() => Publish("game/"+username+"/miss", buildJson("Target was missed!"));
-    public static void MqttCurrentScore(int score) => Publish("game/"+username+"/score/total", buildJson(score.ToString()));
-    public static void MqttScore(int score) => Publish("game/" + username + "/score/latest", buildJson(score.ToString()));
-    public static void MqttCurrentMultiplier(int multiplier) => Publish("game/" + username + "score/multiplier", buildJson(multiplier.ToString()));
-    public static void MqttCurrentDarts(int amount) => Publish("game/"+username+"/darts", buildJson(amount.ToString()));
-    public static void MqttTimeLeft(int time) => Publish("game/"+username+"/time", buildJson(time.ToString()));
+    public static void MqttStartGame() => Publish(Base,buildJson("Game started"));
+    public static void MqttHitTarget() => Publish(Base+"/hit", buildJson("Target was hit!"));
+    public static void MqttMissTarget() => Publish(Base+"/miss", buildJson("Target was missed!"));
+    public static void MqttCurrentScore(int score) => Publish(Base+"/score/total", buildJson(score.ToString()));
+    public static void MqttScore(int score) => Publish(Base+ "/score/latest", buildJson(score.ToString()));
+    public static void MqttCurrentMultiplier(int multiplier) => Publish(Base + "score/multiplier", buildJson(multiplier.ToString()));
+    public static void MqttCurrentDarts(int amount) => Publish(Base+"/darts", buildJson(amount.ToString()));
+    public static void MqttTimeLeft(int time) => Publish(Base+"/time", buildJson(time.ToString()));
 }
