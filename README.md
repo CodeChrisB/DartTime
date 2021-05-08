@@ -19,6 +19,7 @@ Latest score addition or subtraction | game/[Username]/score/multiplier|✔️
 The current amount of darts a player has left |game/[Username]/darts|✔️
 The current amount of time a player has left |game/[Username]/time|✔️
 The current difficulty |game/[Username]/difficulty|✔️
+Game stats after a game was completed | game/stats |
 # ToDo
 
 Name | Description | Implemented
