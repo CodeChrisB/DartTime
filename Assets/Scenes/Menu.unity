@@ -2118,7 +2118,7 @@ RectTransform:
   m_GameObject: {fileID: 619976967}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2.640003}
-  m_LocalScale: {x: 0.8823528, y: 0.6521739, z: 1}
+  m_LocalScale: {x: 0.8823526, y: 0.46875, z: 1}
   m_Children:
   - {fileID: 1789716005}
   - {fileID: 502177656}
@@ -2128,7 +2128,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9, y: 26.739134}
+  m_AnchoredPosition: {x: 8.600002, y: 18.906248}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &619976969
@@ -2188,6 +2188,8 @@ MonoBehaviour:
     - m_Text: Hard
       m_Image: {fileID: 0}
     - m_Text: Extreme
+      m_Image: {fileID: 0}
+    - m_Text: Crazy
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3760,7 +3762,7 @@ GameObject:
   - component: {fileID: 1109683696}
   - component: {fileID: 1109683695}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: DropdownPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3775,7 +3777,7 @@ RectTransform:
   m_GameObject: {fileID: 1109683693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.34, y: 0.46, z: 1}
+  m_LocalScale: {x: 0.34, y: 0.64, z: 1}
   m_Children:
   - {fileID: 619976968}
   m_Father: {fileID: 661025140}
@@ -3783,7 +3785,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -57.5, y: -5.2}
+  m_AnchoredPosition: {x: -57.5, y: 0.099998474}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1109683695

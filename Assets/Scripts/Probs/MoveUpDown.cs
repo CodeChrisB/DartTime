@@ -6,21 +6,30 @@ using UnityEngine;
 public class MoveUpDown : MonoBehaviour
 {
     // Start is called before the first frame update
+    public bool invert = false;
+    public float speed = 2f;
     void Start()
     {
+        if (!invert) 
+        { 
         MoveUp();
+        } 
+        else
+        {
+            MoveDown();
+        }
     }
 
     private void MoveUp()
     {
-        LeanTween.moveLocalY(gameObject, 3.21f, 2f);
-        LeanTween.delayedCall(2f, MoveDown);
+        LeanTween.moveLocalY(gameObject, 3.33f, speed);
+        LeanTween.delayedCall(speed, MoveDown);
     }
 
     private void MoveDown()
     {
-        LeanTween.moveLocalY(gameObject, 1.457f, 2f);
-        LeanTween.delayedCall(2f, MoveUp);
+        LeanTween.moveLocalY(gameObject, 0.27f, speed);
+        LeanTween.delayedCall(speed, MoveUp);
 
     }
 }
