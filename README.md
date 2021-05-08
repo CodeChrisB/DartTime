@@ -18,3 +18,10 @@ Latest score addition or subtraction | game/[Username]/score/latest|✔️
 Latest score addition or subtraction | game/[Username]/score/multiplier|✔️
 The current amount of darts a player has left |game/[Username]/darts|✔️
 The current amount of time a player has left |game/[Username]/time|✔️
+
+# Features
+
+Name | Description | Implemented
+--- | --- | ---
+Base Gameplay | Being able to shot darts and get points by hitting targets. | ✔️
+Leaderboard | A list of the top 10 highest Scores ever archived in DartTime. | No
