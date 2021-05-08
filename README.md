@@ -18,7 +18,7 @@ Latest score addition or subtraction | game/[Username]/score/latest|✔️
 Latest score addition or subtraction | game/[Username]/score/multiplier|✔️
 The current amount of darts a player has left |game/[Username]/darts|✔️
 The current amount of time a player has left |game/[Username]/time|✔️
-
+The current difficulty |game/[Username]/difficulty|✔️
 # ToDo
 
 Name | Description | Implemented
@@ -28,4 +28,4 @@ Score Mulitplier | Getting More Points for consecutive hit targets | ✔️
 Integrated UI | Having the Score, Time and Dart Left UI integrated in the game world | ✔️
 Light Indicator | Change the light when a dart hits or misses a target | ✔️
 Real Dart Display | Being able to phyisically see the darts that are left in the game | ✔️
-Leaderboard | A list of the top 10 highest Scores ever archived in DartTime. | 
+Difficulties | Have multiple Difficulties that  each spawn more Obstacles | ✔️
