@@ -19,7 +19,20 @@ Latest score addition or subtraction | game/[Username]/score/multiplier|✔️
 The current amount of darts a player has left |game/[Username]/darts|✔️
 The current amount of time a player has left |game/[Username]/time|✔️
 The current difficulty |game/[Username]/difficulty|✔️
-Game stats after a game was completed | game/stats |
+Game stats after a game was completed | game/stats |✔️
+
+### Json data for game/stats
+```
+{ 
+  data: 
+  {
+    "username":"Chr1s",
+    "score":25750,
+    "level":4
+  },
+  time:5/8/2021 8:02:05 PM 
+}
+```
 # ToDo
 
 Name | Description | Implemented
