@@ -11,6 +11,7 @@ public class Arrow : MonoBehaviour
     NumAnimController num;
     public GameObject Text;
     bool scored = false;
+
     private void Start()
     {
         ts  = (TargetSpawner)GameObject.Find("Scripts").GetComponent(typeof(TargetSpawner));
@@ -29,10 +30,8 @@ public class Arrow : MonoBehaviour
 
             Mqtt.MqttHitTarget();
             ts.addPoints(score);
-            ts.SpawnTarget();
             ScoreText(score,gameObject.transform.position);
-            Destroy(other.transform.parent.gameObject);
-
+            ts.HitTarget(other.gameObject);
         }
         else
         {

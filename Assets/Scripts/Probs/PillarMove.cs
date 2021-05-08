@@ -6,9 +6,18 @@ using UnityEngine;
 public class PillarMove : MonoBehaviour
 {
     // Start is called before the first frame update
+    public bool StartLeft = true;
+    public float halfCycle = 5f;
     void Start()
     {
+        if (!StartLeft)
+        {
         MoveLeft();
+        }
+        else
+        {
+            MoveRight();
+        }
 
        
             
@@ -16,14 +25,14 @@ public class PillarMove : MonoBehaviour
 
     private void MoveLeft()
     {
-        LeanTween.moveLocalZ(gameObject, -3.8f, 5f);
-        LeanTween.delayedCall(5f, MoveRight);
+        LeanTween.moveLocalZ(gameObject, -3.8f, halfCycle);
+        LeanTween.delayedCall(halfCycle, MoveRight);
     }
 
     private void MoveRight()
     {
-        LeanTween.moveLocalZ(gameObject, 4.77f, 5f);
-        LeanTween.delayedCall(5f, MoveLeft);
+        LeanTween.moveLocalZ(gameObject, 4.77f, halfCycle);
+        LeanTween.delayedCall(halfCycle, MoveLeft);
     }
     // Update is called once per frame
     void Update()

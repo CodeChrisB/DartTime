@@ -22,11 +22,16 @@ public class TargetSpawner : MonoBehaviour
     public int SubtractedScore = -25;
     public int Score { get; private set; }
     public int Multiplier { get; private set; }
+
+    private List<GameObject> targets = new List<GameObject>();
     void Start()
     {
         StartTimer();
         SpawnTarget();
         SpawnTarget();
+        SpawnTarget();
+
+
     }
 
     private void StartTimer()
@@ -44,6 +49,18 @@ public class TargetSpawner : MonoBehaviour
         Time.text = TimeLeft.ToString();
     }
 
+    internal void HitTarget(GameObject gameObject)
+    {
+
+        foreach (GameObject target in targets)
+            Destroy(target);
+
+        targets = new List<GameObject>();
+
+        for(int i= 0;i < 3;i++)
+            SpawnNormal();
+    }
+
     public void SpawnTarget()
     {
         if (TargetContainer.transform.childCount < 4)
@@ -55,19 +72,36 @@ public class TargetSpawner : MonoBehaviour
 
     private void SpawnNormal()
     {
+
+
+        GameObject target = Instantiate(Target);
+        Vector3 pos = GetNewPos(target.transform.position);
+
+        target.transform.position = pos;
+        target.transform.parent = TargetContainer.transform;
+        targets.Add(target);
+    }
+
+    private Vector3 GetNewPos(Vector3 pos)
+    {
+        targets.RemoveAll(item => item == null);
+
         float z = Random.Range(minZ, maxZ);
         float y = Random.Range(minY, maxY);
 
-        GameObject target = Instantiate(Target);
-        Vector3 pos = target.transform.position;
         pos.x = -3.52f;
         pos.z = z;
         pos.y = y;
 
-        target.transform.position = pos;
-        target.transform.parent = TargetContainer.transform;
-    }
+        foreach (GameObject vec in targets)
+        {
+            if (Vector3.Distance(vec.transform.position, pos) < 1)
+                return GetNewPos(pos);
+        }
 
+        return pos;
+
+    }
 
     void SpawnSpecial()
     {
@@ -118,7 +152,7 @@ public class TargetSpawner : MonoBehaviour
     private void PostMqtt(int score)
     {
         //send the latest score that got added/subtracted
-        Mqtt.MqttScore(score);
+        Mqtt.MqttScore(score*Multiplier);
         //send the full score
         Mqtt.MqttCurrentScore(Score);
     }

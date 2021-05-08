@@ -7,7 +7,7 @@ using UnityEngine;
 public class MenuLightSystem : MonoBehaviour
 {
     // Start is called before the first frame update
-    float delay = 2;
+    float delay = 1.5f;
     void Start()
     {
         LeanTween.delayedCall(delay, GreenLight);
