@@ -39,13 +39,25 @@ public class Mqtt : MonoBehaviour
     {
         client.Publish(baseTopic + topic, Encode(msg));
     }
+    private static string buildJson(string data)
+    {
+        string s = "{\ndata:\n" + data + ",\ntime:"+GetTime()+",\nusername:"+username+"\n}";
+
+        return s;
+    }
+
+    private static string GetTime()
+    {
+        return DateTime.Now.ToString();
+    }
 
     //Mqtt Requests
-    public static void MqttStartGame() => Publish("game/"+username,username +" started a game." );
-    public static void MqttHitTarget() => Publish("game/"+username+"/hit", "Target was hit!");
-    public static void MqttMissTarget() => Publish("game/"+username+"/miss", "Target was miss!");
-    public static void MqttCurrentScore(int score) => Publish("game/"+username+"/score/total", score.ToString());
-    public static void MqttScore(int score) => Publish("game/" + username + "/score/latest", score.ToString());
-    public static void MqttCurrentDarts(int amount) => Publish("game/"+username+"/darts", amount.ToString());
-    public static void MqttTimeLeft(int time) => Publish("game/"+username+"/time", time.ToString());
+    public static void MqttStartGame() => Publish("game/"+username,buildJson("Game started"));
+    public static void MqttHitTarget() => Publish("game/"+username+"/hit", buildJson("Target was hit!"));
+    public static void MqttMissTarget() => Publish("game/"+username+"/miss", buildJson("Target was missed!"));
+    public static void MqttCurrentScore(int score) => Publish("game/"+username+"/score/total", buildJson(score.ToString()));
+    public static void MqttScore(int score) => Publish("game/" + username + "/score/latest", buildJson(score.ToString()));
+    public static void MqttCurrentMultiplier(int multiplier) => Publish("game/" + username + "score/multiplier", buildJson(multiplier.ToString()));
+    public static void MqttCurrentDarts(int amount) => Publish("game/"+username+"/darts", buildJson(amount.ToString()));
+    public static void MqttTimeLeft(int time) => Publish("game/"+username+"/time", buildJson(time.ToString()));
 }

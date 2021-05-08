@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SpawnArrow : MonoBehaviour
@@ -11,6 +12,7 @@ public class SpawnArrow : MonoBehaviour
     public GameObject FakeArrow;
     public GameObject Player;
     public GameObject DartPos;
+    public TMP_Text DartText;
    
     private List<GameObject> darts = new List<GameObject>();
     public float speed = 100f;
@@ -56,6 +58,7 @@ public class SpawnArrow : MonoBehaviour
         dartAmount--;
         Destroy(darts[0]);
         darts.RemoveAt(0);
+        DartText.text = dartAmount.ToString();
         Mqtt.MqttCurrentDarts(dartAmount);
         if (dartAmount < 1)
         {

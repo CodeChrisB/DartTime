@@ -21,7 +21,7 @@ public class TargetSpawner : MonoBehaviour
 
     public int SubtractedScore = -25;
     public int Score { get; private set; }
-
+    public int Multiplier { get; private set; }
     void Start()
     {
         StartTimer();
@@ -76,14 +76,22 @@ public class TargetSpawner : MonoBehaviour
 
     internal void addPoints(int score)
     {
-        Score += score;
+        
+        SetMultiplier();
+        Score += score*Multiplier;
         PostMqtt(score);
         SetLight(Color.green);
     }
 
+    private void SetMultiplier()
+    {
+        Multiplier++;
+        Mqtt.MqttCurrentMultiplier(Multiplier);
+    }
 
     internal int subtractPoints()
     {
+        Multiplier = 1;
         Score += SubtractedScore;
         PostMqtt(SubtractedScore);
         SetLight(Color.red);

@@ -26,7 +26,12 @@ public class CameraMovement : MonoBehaviour
         yRotation += mouseX;
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90, 90);
- 
+        if (yRotation < -150)
+            yRotation = -150;
+        else if (yRotation > -30)
+            yRotation = -30;
+
+
         cam.transform.eulerAngles = new Vector3(xRotation, yRotation, 0.0f);
     }
 }

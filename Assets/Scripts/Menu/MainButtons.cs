@@ -10,6 +10,7 @@ public class MainButtons : MonoBehaviour
     public Button button;
     public TMP_InputField mainInputField;
     public TMP_Text text;
+    public TMP_Text buttonText;
     public void StartGame()
     {
         PlayerPrefs.SetString(PlayerKeys.USERNAME, text.text);
@@ -33,10 +34,13 @@ public class MainButtons : MonoBehaviour
         if (text.text.Length >= 3)
         {
             button.interactable = true;
+            buttonText.text = "Start Game";
         }
-        else
+        else if(text.text.Length<3)
         {
             button.interactable = false;
+            buttonText.text = "Input Name";
+
         }
     }
 }
