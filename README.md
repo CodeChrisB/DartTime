@@ -1,11 +1,10 @@
 # DartTime
 
-A small Mqtt Client which is part of a bigger school project.  
-In this game you can shoot darts on targets, there are multiple   
-levels that get harder and harder. The goal is to the highest   
-score possible.
-
-
+A small mqtt client which is part of a bigger school project.  
+In this game you have to hit targets with darts, there are    
+multiple difficulties (5 in total) that each add more obstacles,
+to block your sight of the targets. The goal of the game is to 
+get the highest score possible.
 
 ## Base topic
 Since we use the HiveMc Online broker we need a unique base Topic.  
