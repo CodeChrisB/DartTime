@@ -21,9 +21,10 @@ public class SpawnArrow : MonoBehaviour
     bool canShoot = true;
     TargetSpawner ts;
     bool stop = false;
-
+    private PauseMenu pm;
     private void Start()
     {
+        pm = (PauseMenu)GameObject.Find("GlobalScript").GetComponent(typeof(PauseMenu));
         ts = (TargetSpawner)GameObject.Find("Scripts").GetComponent(typeof(TargetSpawner));
 
         Vector3 pos = DartPos.transform.position;
@@ -41,6 +42,9 @@ public class SpawnArrow : MonoBehaviour
 
     void Update()
     {
+        if (pm.isPaused)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
 

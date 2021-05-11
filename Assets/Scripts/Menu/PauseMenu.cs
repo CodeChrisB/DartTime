@@ -6,12 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject Game;
     public GameObject Menu;
-    public Camera GameCam;
-    public Camera MenuCam;
+    
+    private TargetSpawner ts;
     public bool isPaused = false;
-    public TargetSpawner ts;
 
     private void Start()
     {
@@ -28,18 +26,14 @@ public class PauseMenu : MonoBehaviour
 
     public void ToggleMenu()
     {
-        bool gameState = !Game.activeSelf;
-        Game.SetActive(gameState);
-        GameCam.gameObject.SetActive(gameState);
+       
+        isPaused = !isPaused;
+        Menu.SetActive(isPaused);
 
-        Menu.SetActive(!gameState);
-        MenuCam.gameObject.SetActive(!gameState);
-        isPaused = !gameState;
-        //set cursor state
-        Cursor.lockState = gameState ? CursorLockMode.Locked : CursorLockMode.Confined;
+        Cursor.lockState = !isPaused ? CursorLockMode.Locked : CursorLockMode.Confined;
 
         //start timer again
-        if (gameState)
+        if (!isPaused)
             ts.SubtractTimer();
     }
 

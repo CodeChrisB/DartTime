@@ -11,15 +11,18 @@ public class CameraMovement : MonoBehaviour
     private float xRotation = 0.0f;
     private float yRotation = 0.0f;
     private Camera cam;
- 
+    private PauseMenu pm;
     void Start()
     {
+        pm = (PauseMenu)GameObject.Find("GlobalScript").GetComponent(typeof(PauseMenu));
         cam = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
     }
  
     void Update()
     {
+        if (pm.isPaused)
+            return;
         float mouseX = Input.GetAxis("Mouse X") * horizontalSpeed;
         float mouseY = Input.GetAxis("Mouse Y") * verticalSpeed;
  

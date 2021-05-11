@@ -54,6 +54,7 @@ public class Arrow : MonoBehaviour
         GameObject ob = Instantiate(Text);
         var mesh = ob.GetComponent<TextMeshPro>();
         mesh.text =  (score * ts.Multiplier).ToString();
+        pos.x += 0.1f;
         ob.transform.position = pos;
         LeanTween.moveLocalY(ob, ob.transform.position.y+0.2f, 0.5f);
         Destroy(ob, 0.5f);
