@@ -25,14 +25,12 @@ public class Mqtt : MonoBehaviour
         MqttStartGame();
     }
 
-    private static byte[] Encode(string text)
-    {
-        return Encoding.UTF8.GetBytes(text);
-    }
+
     private void ReceiveMessage(object sender, MqttMsgPublishEventArgs e)
     {
         throw new NotImplementedException();
     }
+    #region Publish
     private static void PublishUser(string topic,string msg)
     {
         client.Publish(baseTopic+BuildUserTopic(topic), Encode(buildJson(msg)));
@@ -46,10 +44,15 @@ public class Mqtt : MonoBehaviour
     {
         return "{\ndata:\n" + data + ",\ntime:"+GetTime()+"\n}";
     }
+    private static byte[] Encode(string text)
+    {
+        return Encoding.UTF8.GetBytes(text);
+    }
     private static string GetTime() => DateTime.Now.ToString();
     private static string Base => "game/";
     private static string BuildUserTopic(string topic) => Base + username + "/" + topic;
     private static string BuildTopic(string topic) => Base + topic;
+    #endregion Publish
 
     #region Mqtt Publish Requests
     public static void MqttStartGame() => PublishUser("", "Game started");
