@@ -34,6 +34,14 @@ Game stats after a game was completed | game/stats |✔️
   time:5/8/2021 8:02:05 PM 
 }
 ```
+
+### Other Json data
+```
+{ 
+  data: [Requested Data]
+  time:5/8/2021 8:02:05 PM 
+}
+```
 # ToDo
 
 Name | Description | Implemented
