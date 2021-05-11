@@ -61,14 +61,6 @@ public class SpawnArrow : MonoBehaviour
         if (stop)
             return;
 
-        if (dartAmount <1)
-        {
-            gameObject.transform.localScale = new Vector3(0, 0, 0);
-            Debug.Log("No Darts Left");
-            stop = true;
-            ts.EndGame();
-        }
-        else
         {
            
             dartAmount--;
@@ -76,9 +68,21 @@ public class SpawnArrow : MonoBehaviour
             darts.RemoveAt(0);
             DartText.text = dartAmount.ToString();
             Mqtt.MqttCurrentDarts(dartAmount);
-            
+
+            if (dartAmount == 0)
+            {
+                LeanTween.delayedCall(2.5f, EndGame);
+            }
         }
 
+    }
+
+    private void EndGame()
+    {
+        gameObject.transform.localScale = new Vector3(0, 0, 0);
+        Debug.Log("No Darts Left");
+        stop = true;
+        ts.EndGame();
     }
 
     private void SetShoot()

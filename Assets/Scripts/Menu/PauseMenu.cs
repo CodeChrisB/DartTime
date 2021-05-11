@@ -10,7 +10,14 @@ public class PauseMenu : MonoBehaviour
     public GameObject Menu;
     public Camera GameCam;
     public Camera MenuCam;
-   
+    public bool isPaused = false;
+    public TargetSpawner ts;
+
+    private void Start()
+    {
+        ts = (TargetSpawner)GameObject.Find("Scripts").GetComponent(typeof(TargetSpawner));
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -27,9 +34,13 @@ public class PauseMenu : MonoBehaviour
 
         Menu.SetActive(!gameState);
         MenuCam.gameObject.SetActive(!gameState);
-
+        isPaused = !gameState;
         //set cursor state
         Cursor.lockState = gameState ? CursorLockMode.Locked : CursorLockMode.Confined;
+
+        //start timer again
+        if (gameState)
+            ts.SubtractTimer();
     }
 
     public void CloseGame() => Application.Quit();

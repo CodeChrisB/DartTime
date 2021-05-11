@@ -29,8 +29,12 @@ public class TargetSpawner : MonoBehaviour
     public bool isPlaying = true;
 
     private List<GameObject> targets = new List<GameObject>();
+    PauseMenu pm;
     void Start()
     {
+        pm = (PauseMenu)GameObject.Find("GlobalScript").GetComponent(typeof(PauseMenu));
+
+
         Level = PlayerPrefs.GetInt(PlayerKeys.LEVEL);
         Multiplier = Level + 1;
         StartTimer();
@@ -49,8 +53,10 @@ public class TargetSpawner : MonoBehaviour
         LeanTween.delayedCall(1, SubtractTimer);
     }
 
-    private void SubtractTimer()
+    public void SubtractTimer()
     {
+        if (pm.isPaused)
+            return;
         TimeLeft--;
         if (TimeLeft == 0)
         {
