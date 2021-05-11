@@ -1,14 +1,17 @@
 # DartTime
 
+A small mqtt client which is part of a bigger school project.  
+In this game you have to hit targets with darts, there are    
+multiple difficulties (5 in total) that each add more obstacles,
+to block your sight of the targets. The goal of the game is to 
+get the highest score possible.
 
-## Mqtt Requests
-
-### Base topic
-
+## Base topic
+Since we use the HiveMc Online broker we need a unique base Topic.  
 ```
 string baseTopic = 'x6et/q8zl/'
 ```
-
+## Mqtt Requests
 Description | Topic | Implemented
 --- | --- | ---
 A game was started | game/[Username]|✔️
@@ -42,12 +45,13 @@ Game stats after a game was completed | game/stats |✔️
   time:5/8/2021 8:02:05 PM 
 }
 ```
-# Mqtt Get Requests
+## Mqtt Subscribe
 
 Description | Topic | Implemented
 --- | --- | ---
 Currently we do not need those | None|
-# ToDo
+
+## ToDo
 
 Name | Description | Implemented
 --- | --- | ---
@@ -58,9 +62,9 @@ Light Indicator | Change the light when a dart hits or misses a target | ✔️
 Real Dart Display | Being able to phyisically see the darts that are left in the game | ✔️
 Difficulties | Have multiple Difficulties that  each spawn more Obstacles | ✔️
 End Screen | After the game is over (No time/darts left) There should be a big Score showcase and after like 5 seconds a transition to the main menu| ✔️
-Pause Menu | At any time in the game there should be a way to pause it and have acess to a small menu |
+Pause Menu | At any time in the game there should be a way to pause it and have acess to a small menu |✔️
 
 ## Screenshots
 
-![alt text](https://github.com/CodeChrisB/QuickDebugBackend/blob/main/Capture.PNG "Logo Title Text 1")
+![alt text](https://github.com/CodeChrisB/QuickDebugBackend/blob/main/Capture.PNG "MainMenu")
 
