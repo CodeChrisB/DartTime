@@ -42,7 +42,7 @@ Game stats after a game was completed | game/stats |✔️
   time:5/8/2021 8:02:05 PM 
 }
 ```
-# Mqtt Get Requests
+# Mqtt Subscribe
 
 Description | Topic | Implemented
 --- | --- | ---
