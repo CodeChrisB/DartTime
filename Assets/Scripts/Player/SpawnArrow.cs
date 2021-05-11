@@ -19,9 +19,13 @@ public class SpawnArrow : MonoBehaviour
     int dartAmount = 30;
 
     bool canShoot = true;
+    TargetSpawner ts;
+    bool stop = false;
 
     private void Start()
     {
+        ts = (TargetSpawner)GameObject.Find("Scripts").GetComponent(typeof(TargetSpawner));
+
         Vector3 pos = DartPos.transform.position;
         Vector3 rot = new Vector3(0, 90, 0);
         for(int i = 0; i < dartAmount; i++)
@@ -54,17 +58,27 @@ public class SpawnArrow : MonoBehaviour
 
     private void RemoveDart()
     {
-        
-        dartAmount--;
-        Destroy(darts[0]);
-        darts.RemoveAt(0);
-        DartText.text = dartAmount.ToString();
-        Mqtt.MqttCurrentDarts(dartAmount);
-        if (dartAmount < 1)
+        if (stop)
+            return;
+
+        if (dartAmount <1)
         {
             gameObject.transform.localScale = new Vector3(0, 0, 0);
             Debug.Log("No Darts Left");
+            stop = true;
+            ts.EndGame();
         }
+        else
+        {
+           
+            dartAmount--;
+            Destroy(darts[0]);
+            darts.RemoveAt(0);
+            DartText.text = dartAmount.ToString();
+            Mqtt.MqttCurrentDarts(dartAmount);
+            
+        }
+
     }
 
     private void SetShoot()

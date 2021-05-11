@@ -5,10 +5,10 @@ public class NumAnimData : ScriptableObject
 {
 
 
-  public int _total;
+  public float _total;
   public float _animationTime;
 
-    public NumAnimData(int total, float animationTime)
+    public NumAnimData(float total, float animationTime)
     {
         _total = total;
         _animationTime = animationTime;

@@ -12,6 +12,7 @@ public class Arrow : MonoBehaviour
     public GameObject Text;
     bool scored = false;
 
+
     private void Start()
     {
         ts  = (TargetSpawner)GameObject.Find("Scripts").GetComponent(typeof(TargetSpawner));
@@ -35,8 +36,11 @@ public class Arrow : MonoBehaviour
         }
         else
         {
+            if (ts.isPlaying)
+            {
             Mqtt.MqttMissTarget();
             ScoreText(ts.subtractPoints(),gameObject.transform.position);
+            }
         }
         
         
@@ -45,12 +49,11 @@ public class Arrow : MonoBehaviour
     }
 
 
-    private void ScoreText(int score, Vector3 pos)
+    private void ScoreText(float score, Vector3 pos)
     {
         GameObject ob = Instantiate(Text);
         var mesh = ob.GetComponent<TextMeshPro>();
-        mesh.text =  score.ToString();
-        mesh.text += ts.Multiplier > 1 ? " x " + ts.Multiplier : "";
+        mesh.text =  (score * ts.Multiplier).ToString();
         ob.transform.position = pos;
         LeanTween.moveLocalY(ob, ob.transform.position.y+0.2f, 0.5f);
         Destroy(ob, 0.5f);

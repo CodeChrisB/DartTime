@@ -36,7 +36,7 @@ public class MainButtons : MonoBehaviour
         else if(text.text.Length<3)
         {
             button.interactable = false;
-            buttonText.text = "Input Name";
+            buttonText.text = "Enter your Name";
 
         }
     }
@@ -45,6 +45,10 @@ public class MainButtons : MonoBehaviour
     {
         Debug.Log(value);
         PlayerPrefs.SetInt(PlayerKeys.LEVEL, value);
+    }
 
+    public void CloseGame()
+    {
+        Application.Quit();
     }
 }

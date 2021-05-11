@@ -5,10 +5,10 @@ using UnityEngine;
 public class GameStats 
 {
     public string username;
-    public int score;
+    public float score;
     public int level;
 
-    public GameStats(string username, int score, int level)
+    public GameStats(string username, float score, int level)
     {
         this.username = username;
         this.score = score;
