@@ -1,14 +1,18 @@
 # DartTime
 
+A small Mqtt Client which is part of a bigger school project.  
+In this game you can shoot darts on targets, there are multiple   
+levels that get harder and harder. The goal is to the highest   
+score possible.
 
-## Mqtt Requests
 
-### Base topic
 
+## Base topic
+Since we use the HiveMc Online broker we need a unique base Topic.  
 ```
 string baseTopic = 'x6et/q8zl/'
 ```
-
+## Mqtt Requests
 Description | Topic | Implemented
 --- | --- | ---
 A game was started | game/[Username]|✔️
@@ -42,12 +46,13 @@ Game stats after a game was completed | game/stats |✔️
   time:5/8/2021 8:02:05 PM 
 }
 ```
-# Mqtt Subscribe
+## Mqtt Subscribe
 
 Description | Topic | Implemented
 --- | --- | ---
 Currently we do not need those | None|
-# ToDo
+
+## ToDo
 
 Name | Description | Implemented
 --- | --- | ---
@@ -62,5 +67,5 @@ Pause Menu | At any time in the game there should be a way to pause it and have 
 
 ## Screenshots
 
-![alt text](https://github.com/CodeChrisB/QuickDebugBackend/blob/main/Capture.PNG "Logo Title Text 1")
+![alt text](https://github.com/CodeChrisB/QuickDebugBackend/blob/main/Capture.PNG "MainMenu")
 
