@@ -42,6 +42,11 @@ Game stats after a game was completed | game/stats |✔️
   time:5/8/2021 8:02:05 PM 
 }
 ```
+# Mqtt Get Requests
+
+Description | Topic | Implemented
+--- | --- | ---
+Currently we do not need those | None|
 # ToDo
 
 Name | Description | Implemented
@@ -52,7 +57,8 @@ Integrated UI | Having the Score, Time and Dart Left UI integrated in the game w
 Light Indicator | Change the light when a dart hits or misses a target | ✔️
 Real Dart Display | Being able to phyisically see the darts that are left in the game | ✔️
 Difficulties | Have multiple Difficulties that  each spawn more Obstacles | ✔️
-
+End Screen | After the game is over (No time/darts left) There should be the option to retry or go to main menu |
+Pause Menu | At any time in the game there should be a way to pause it and have acess to a small menu |
 
 ## Screenshots
 
