@@ -72,7 +72,7 @@ public class TargetSpawner : MonoBehaviour
 
     internal void HitTarget(GameObject gameObject)
     {
-
+        
         DestroyAllTargets();
 
         targets = new List<GameObject>();
@@ -105,6 +105,8 @@ public class TargetSpawner : MonoBehaviour
 
         target.transform.position = pos;
         target.transform.parent = TargetContainer.transform;
+        float scale = Random.Range(0.7f, 1f);
+        target.transform.localScale = new Vector3(scale, scale, scale);
         targets.Add(target);
     }
 
@@ -121,7 +123,7 @@ public class TargetSpawner : MonoBehaviour
 
         foreach (GameObject vec in targets)
         {
-            if (Vector3.Distance(vec.transform.position, pos) < 1)
+            if (Vector3.Distance(vec.transform.position, pos) < 1.5)
                 return GetNewPos(pos);
         }
 
@@ -134,13 +136,15 @@ public class TargetSpawner : MonoBehaviour
       //todo
     }
 
-    internal void addPoints(int score)
+    internal int addPoints(int score,GameObject target)
     {
-        
+        float scale = 1 / target.transform.parent.localScale.x;
         SetMultiplier();
-        Score += (int)((score + Level * 5 )* Multiplier);
-        PostMqtt(score);
+        int addedScore = (int)(score*scale + Level * Level);
+        Score += addedScore*Multiplier;
+        PostMqtt(addedScore * Multiplier);
         SetLight(Color.green);
+        return addedScore;
     }
 
     private void SetMultiplier()

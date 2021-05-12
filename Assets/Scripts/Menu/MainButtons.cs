@@ -11,6 +11,7 @@ public class MainButtons : MonoBehaviour
     public TMP_InputField mainInputField;
     public TMP_Text text;
     public TMP_Text buttonText;
+    public GameObject Camera;
     public void StartGame()
     {
         PlayerPrefs.SetString(PlayerKeys.USERNAME, text.text);
@@ -50,5 +51,18 @@ public class MainButtons : MonoBehaviour
     public void CloseGame()
     {
         Application.Quit();
+    }
+
+    public void ToInformation()
+    {
+        LeanTween.rotate(Camera, new Vector3(0, 90, 0), 0.5f);
+        LeanTween.move(Camera, new Vector3(7.5f, 2, 0), 0.5f);
+    }
+
+    public void ToMainView()
+    {
+        LeanTween.rotate(Camera, new Vector3(20, -110, 0), 0.5f);
+        LeanTween.move(Camera, new Vector3(5, 2, 0.25f), 0.5f);
+
     }
 }
