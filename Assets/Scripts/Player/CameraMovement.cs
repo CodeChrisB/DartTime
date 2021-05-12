@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class CameraMovement : MonoBehaviour
     private float yRotation = 0.0f;
     private Camera cam;
     private PauseMenu pm;
+    private bool zoom;
     void Start()
     {
         pm = (PauseMenu)GameObject.Find("GlobalScript").GetComponent(typeof(PauseMenu));
@@ -23,6 +25,10 @@ public class CameraMovement : MonoBehaviour
     {
         if (pm.isPaused)
             return;
+
+        if (Input.GetMouseButtonDown(1))
+            ToggleZoom();
+
         float mouseX = Input.GetAxis("Mouse X") * horizontalSpeed;
         float mouseY = Input.GetAxis("Mouse Y") * verticalSpeed;
  
@@ -36,5 +42,11 @@ public class CameraMovement : MonoBehaviour
 
 
         cam.transform.eulerAngles = new Vector3(xRotation, yRotation, 0.0f);
+    }
+
+    private void ToggleZoom()
+    {
+        zoom = !zoom;
+        cam.fieldOfView = zoom ? 30:60;
     }
 }
