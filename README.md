@@ -63,7 +63,7 @@ Real Dart Display | Being able to phyisically see the darts that are left in the
 Difficulties | Have multiple Difficulties that  each spawn more Obstacles | ✔️
 End Screen | After the game is over (No time/darts left) There should be a big Score showcase and after like 5 seconds a transition to the main menu| ✔️
 Pause Menu | At any time in the game there should be a way to pause it and have acess to a small menu |✔️
-How to Play Page | A small overview what the game is about and how to play |
+How to Play Page | A small overview what the game is about and how to play | ✔️
 Zoom Mechanic | Left Click to zoom something like a 1.5x zoom |
 
 ## Screenshots
