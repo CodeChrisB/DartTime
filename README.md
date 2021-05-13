@@ -67,6 +67,8 @@ How to Play Page | A small overview what the game is about and how to play | ✔
 Zoom Mechanic | Left Click to zoom something like a 1.5x zoom | ✔️
 Start Countdown| 3 , 2 , 1 , Start ! Coutndown before the game starts | ✔️
 Level Diffrence Page | Page that gives information about Level,	Target Size,	Target Score,	Start Multiplier,	Time |
+Unity Build Background | Change the Startup background for the Made with Unity Page |
+Game Icon | Change the Icon of the .exe File |
 
 ## Screenshots
 
