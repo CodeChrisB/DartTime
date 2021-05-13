@@ -20,7 +20,6 @@ public class TargetSpawner : MonoBehaviour
     public GameObject Obstacels;
     public TMP_Text Time;
     public GameObject Display;
-    public int TimeLeft = 5;
 
     public float SubtractedScore = -25;
     public float Score { get; private set; }
@@ -52,7 +51,7 @@ public class TargetSpawner : MonoBehaviour
     {
         
         DestroyAllTargets();
-
+         
         targets = new List<GameObject>();
 
         for(int i= 0;i < 3;i++)
@@ -69,15 +68,12 @@ public class TargetSpawner : MonoBehaviour
     {
         if (TargetContainer.transform.childCount < 4)
         {
-            //No matter how often spawn methods will be called there only ever will be 3 targets on the screen
-            SpawnNormal();
+           SpawnNormal();
         }
     }
 
     private void SpawnNormal()
     {
-
-
         GameObject target = Instantiate(Target);
         Vector3 pos = GetNewPos(target.transform.position);
 
@@ -107,11 +103,6 @@ public class TargetSpawner : MonoBehaviour
 
         return pos;
 
-    }
-
-    void SpawnSpecial()
-    {
-      //todo
     }
 
     internal int addPoints(int score,GameObject target)

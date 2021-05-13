@@ -23,6 +23,7 @@ public class GameTimer : MonoBehaviour
         if (pm.isPaused)
             return;
 
+        TimeText.text = Math.Round((Double)timeRemaining, 1).ToString();
         if (timeRemaining > 0)
         {
             UpdateTimer();
@@ -41,7 +42,6 @@ public class GameTimer : MonoBehaviour
         if (timeRemaining < second)
         {
             second = (int)timeRemaining;
-            TimeText.text = second.ToString();
             Mqtt.MqttTimeLeft(second);
         }
     }

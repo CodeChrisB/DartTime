@@ -21,19 +21,28 @@ public class SpawnArrow : MonoBehaviour
     bool canShoot = true;
     TargetSpawner ts;
     bool stop = false;
+    public bool hasStarted = false;
     private PauseMenu pm;
+    public TMP_Text countText;
     private void Start()
     {
         pm = (PauseMenu)GameObject.Find("GlobalScript").GetComponent(typeof(PauseMenu));
         ts = (TargetSpawner)GameObject.Find("Scripts").GetComponent(typeof(TargetSpawner));
 
+        CreateDartDisplay();
+    }
+
+
+
+    private void CreateDartDisplay()
+    {
         Vector3 pos = DartPos.transform.position;
         Vector3 rot = new Vector3(0, 90, 0);
-        for(int i = 0; i < dartAmount; i++)
+        for (int i = 0; i < dartAmount; i++)
         {
             pos.z += 0.1f;
             GameObject go = Instantiate(FakeArrow);
-            
+
             go.transform.position = pos;
             go.transform.localEulerAngles = rot;
             darts.Add(go);
@@ -42,7 +51,7 @@ public class SpawnArrow : MonoBehaviour
 
     void Update()
     {
-        if (pm.isPaused)
+        if (pm.isPaused || !hasStarted)
             return;
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
