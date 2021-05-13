@@ -31,10 +31,6 @@ public class PauseMenu : MonoBehaviour
         Menu.SetActive(isPaused);
 
         Cursor.lockState = !isPaused ? CursorLockMode.Locked : CursorLockMode.Confined;
-
-        //start timer again
-        if (!isPaused)
-            ts.SubtractTimer();
     }
 
     public void CloseGame() => Application.Quit();

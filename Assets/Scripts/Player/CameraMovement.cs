@@ -32,8 +32,8 @@ public class CameraMovement : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * horizontalSpeed;
         float mouseY = Input.GetAxis("Mouse Y") * verticalSpeed;
  
-        yRotation += mouseX;
-        xRotation -= mouseY;
+        yRotation += mouseX * (zoom ? 0.25f:1);
+        xRotation -= mouseY * (zoom ? 0.25f : 1);
         xRotation = Mathf.Clamp(xRotation, -90, 90);
         if (yRotation < -150)
             yRotation = -150;
@@ -47,6 +47,6 @@ public class CameraMovement : MonoBehaviour
     private void ToggleZoom()
     {
         zoom = !zoom;
-        cam.fieldOfView = zoom ? 30:60;
+        cam.fieldOfView = zoom ? 20:60;
     }
 }

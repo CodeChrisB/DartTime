@@ -37,38 +37,16 @@ public class TargetSpawner : MonoBehaviour
 
         Level = PlayerPrefs.GetInt(PlayerKeys.LEVEL);
         Multiplier = Level + 1;
-        StartTimer();
         SpawnTarget();
         SpawnTarget();
         SpawnTarget();
-
-
-    }
-
-    private void StartTimer()
-    {
-        Time.text = TimeLeft.ToString();
         SubtractedScore *= (Level + 1);
-        Mqtt.MqttTimeLeft(TimeLeft);
-        LeanTween.delayedCall(1, SubtractTimer);
+
     }
 
-    public void SubtractTimer()
-    {
-        if (pm.isPaused)
-            return;
-        TimeLeft--;
-        if (TimeLeft == 0)
-        {
-            LeanTween.cancelAll();
-            EndGame();
-        }else if (TimeLeft > 0)
-        {
-            LeanTween.delayedCall(1, SubtractTimer);
-        }
-        Mqtt.MqttTimeLeft(TimeLeft);
-        Time.text = TimeLeft.ToString();
-    }
+
+
+   
 
     internal void HitTarget(GameObject gameObject)
     {
@@ -105,7 +83,7 @@ public class TargetSpawner : MonoBehaviour
 
         target.transform.position = pos;
         target.transform.parent = TargetContainer.transform;
-        float scale = Random.Range(0.7f, 1f);
+        float scale = Random.Range(1-(Level+1)/10, 1f);
         target.transform.localScale = new Vector3(scale, scale, scale);
         targets.Add(target);
     }
@@ -155,7 +133,7 @@ public class TargetSpawner : MonoBehaviour
 
     internal float subtractPoints()
     {
-        Multiplier = 1;
+        Multiplier = Level+1;
         Score += SubtractedScore;
         PostMqtt(SubtractedScore);
         SetLight(Color.red);
