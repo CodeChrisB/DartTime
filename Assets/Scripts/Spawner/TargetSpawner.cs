@@ -26,7 +26,7 @@ public class TargetSpawner : MonoBehaviour
     public float Multiplier { get; private set; }
     private float Level;
     public bool isPlaying = true;
-
+    private float scale;
     private List<GameObject> targets = new List<GameObject>();
     PauseMenu pm;
     void Start()
@@ -35,6 +35,7 @@ public class TargetSpawner : MonoBehaviour
 
 
         Level = PlayerPrefs.GetInt(PlayerKeys.LEVEL);
+        scale = 1f - Level * 0.05f;
         Multiplier = Level + 1;
         SpawnTarget();
         SpawnTarget();
@@ -79,7 +80,10 @@ public class TargetSpawner : MonoBehaviour
 
         target.transform.position = pos;
         target.transform.parent = TargetContainer.transform;
-        float scale = Random.Range(1-(Level+1)/10, 1f);
+        //Crazy Mode Scale
+        // 33% smaller
+
+
         target.transform.localScale = new Vector3(scale, scale, scale);
         targets.Add(target);
     }

@@ -65,4 +65,10 @@ public class MainButtons : MonoBehaviour
         LeanTween.move(Camera, new Vector3(5, 2, 0.25f), 0.5f);
 
     }
+
+    public void ToStats()
+    {
+        LeanTween.rotate(Camera, new Vector3(0,0,0), 0.5f);
+        LeanTween.move(Camera, new Vector3(6.69f, 2.36f, 3.6f), 0.5f);
+    }
 }

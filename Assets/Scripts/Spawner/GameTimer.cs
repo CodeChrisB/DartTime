@@ -11,19 +11,23 @@ public class GameTimer : MonoBehaviour
     public TMP_Text TimeText;
     PauseMenu pm;
     TargetSpawner ts;
+    SpawnArrow sa;
     private void Start()
     {
+        timeRemaining += PlayerPrefs.GetInt(PlayerKeys.LEVEL) * 5;
         second = (int)timeRemaining;
         pm = (PauseMenu)GameObject.Find("GlobalScript").GetComponent(typeof(PauseMenu));
         ts = (TargetSpawner)GameObject.Find("Scripts").GetComponent(typeof(TargetSpawner));
+        sa = (SpawnArrow)GameObject.Find("ArrowSpawner").GetComponent(typeof(SpawnArrow));
+        TimeText.text = second.ToString() + ".0";
 
     }
     void Update()
     {
-        if (pm.isPaused)
+        if (pm.isPaused || !sa.hasStarted)
             return;
 
-        TimeText.text = Math.Round((Double)timeRemaining, 1).ToString();
+        TimeText.text = string.Format("{0:0.0}", timeRemaining);  
         if (timeRemaining > 0)
         {
             UpdateTimer();
