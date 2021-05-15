@@ -14,7 +14,8 @@ public class GameTimer : MonoBehaviour
     SpawnArrow sa;
     private void Start()
     {
-        timeRemaining += PlayerPrefs.GetInt(PlayerKeys.LEVEL) * 5;
+        SetTime();
+
         second = (int)timeRemaining;
         pm = (PauseMenu)GameObject.Find("GlobalScript").GetComponent(typeof(PauseMenu));
         ts = (TargetSpawner)GameObject.Find("Scripts").GetComponent(typeof(TargetSpawner));
@@ -22,6 +23,19 @@ public class GameTimer : MonoBehaviour
         TimeText.text = second.ToString() + ".0";
 
     }
+
+    private void SetTime()
+    {
+        if (ts.isCrazyMode)
+        {
+            timeRemaining = 100;
+        }
+        else
+        {
+            timeRemaining += PlayerPrefs.GetInt(PlayerKeys.LEVEL) * 5;
+        }
+    }
+
     void Update()
     {
         if (pm.isPaused || !sa.hasStarted)

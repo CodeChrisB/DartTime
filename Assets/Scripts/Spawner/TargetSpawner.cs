@@ -27,6 +27,7 @@ public class TargetSpawner : MonoBehaviour
     private float Level;
     public bool isPlaying = true;
     private float scale;
+    public bool isCrazyMode => Level == 4;
     private List<GameObject> targets = new List<GameObject>();
     PauseMenu pm;
     void Start()
@@ -36,10 +37,9 @@ public class TargetSpawner : MonoBehaviour
 
         Level = PlayerPrefs.GetInt(PlayerKeys.LEVEL);
         scale = 1f - Level * 0.05f;
-        Multiplier = Level + 1;
-        SpawnTarget();
-        SpawnTarget();
-        SpawnTarget();
+        ResetMultiplier();
+        //spawn new targets
+        HitTarget(null);
         SubtractedScore *= (Level + 1);
 
     }
@@ -80,8 +80,7 @@ public class TargetSpawner : MonoBehaviour
 
         target.transform.position = pos;
         target.transform.parent = TargetContainer.transform;
-        //Crazy Mode Scale
-        // 33% smaller
+
 
 
         target.transform.localScale = new Vector3(scale, scale, scale);
@@ -126,13 +125,26 @@ public class TargetSpawner : MonoBehaviour
         Mqtt.MqttCurrentMultiplier(Multiplier);
     }
 
+
     internal float subtractPoints()
     {
-        Multiplier = Level+1;
+        ResetMultiplier();
         Score += SubtractedScore;
         PostMqtt(SubtractedScore);
         SetLight(Color.red);
         return SubtractedScore;
+    }
+
+    private void ResetMultiplier()
+    {
+        if (isCrazyMode)
+        {
+            Multiplier = 10;
+        }
+        else
+        {
+            Multiplier = Level + 1;
+        }
     }
 
     private void SetLight(Color color)

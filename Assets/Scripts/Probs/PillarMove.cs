@@ -8,8 +8,16 @@ public class PillarMove : MonoBehaviour
     // Start is called before the first frame update
     public bool StartLeft = true;
     public float halfCycle = 5f;
+    TargetSpawner ts;
     void Start()
     {
+
+        ts = (TargetSpawner)GameObject.Find("Scripts").GetComponent(typeof(TargetSpawner));
+        if (ts.isCrazyMode)
+        {
+            halfCycle *= 0.8f;
+        }
+
         if (!StartLeft)
         {
         MoveLeft();
