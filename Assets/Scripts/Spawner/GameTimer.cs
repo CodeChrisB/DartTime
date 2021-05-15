@@ -14,13 +14,14 @@ public class GameTimer : MonoBehaviour
     SpawnArrow sa;
     private void Start()
     {
-        SetTime();
 
-        second = (int)timeRemaining;
-        pm = (PauseMenu)GameObject.Find("GlobalScript").GetComponent(typeof(PauseMenu));
         ts = (TargetSpawner)GameObject.Find("Scripts").GetComponent(typeof(TargetSpawner));
+        SetTime();
+        pm = (PauseMenu)GameObject.Find("GlobalScript").GetComponent(typeof(PauseMenu));
         sa = (SpawnArrow)GameObject.Find("ArrowSpawner").GetComponent(typeof(SpawnArrow));
         TimeText.text = second.ToString() + ".0";
+
+        
 
     }
 
@@ -34,6 +35,7 @@ public class GameTimer : MonoBehaviour
         {
             timeRemaining += PlayerPrefs.GetInt(PlayerKeys.LEVEL) * 5;
         }
+        second = (int)timeRemaining;
     }
 
     void Update()
