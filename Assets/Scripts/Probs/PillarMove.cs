@@ -42,9 +42,4 @@ public class PillarMove : MonoBehaviour
         LeanTween.moveLocalZ(gameObject, 4.77f, halfCycle);
         LeanTween.delayedCall(halfCycle, MoveLeft);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
