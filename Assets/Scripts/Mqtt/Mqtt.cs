@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ public class Mqtt : MonoBehaviour
         Subscribe();
         client.MqttMsgPublishReceived += ReceiveMessage;
         MqttStartGame();
+        RequestSendTop("0");
     }
 
   
@@ -91,19 +93,30 @@ public class Mqtt : MonoBehaviour
     {
 
         //note this is just for testing this code is bad
-        string data = "{ \"data\": [ " +
-            "{ \"name\": \"Chris\", \"score\": 13109 }, " +
-            "{ \"name\": \"Chris\", \"score\": 12159 }, " +
-            "{ \"name\": \"Chris\", \"score\": 11135 }, " +
-            "{ \"name\": \"Chris\", \"score\": 10102 }, " +
-            "{ \"name\": \"Chris\", \"score\": 9509 }, " +
-            "{ \"name\": \"Chris\", \"score\": 8549 }, " +
-            "{ \"name\": \"Chris\", \"score\": 8327 }, " +
-            "{ \"name\": \"Chris\", \"score\": 8235 }, " +
-            "{ \"name\": \"Chris\", \"score\": 7215 }, " +
-            "{ \"name\": \"Chris\", \"score\": 7207 } " +
-            "] }";
+        string data = "{ \"data\": [ ";
+        string[] array = new string[] {
+         "{ \"name\": \"Robert\", \"score\":",
+         "{ \"name\": \"Chris\", \"score\":",
+         "{ \"name\": \"Max\", \"score\": ",
+         "{ \"name\": \"Emil\", \"score\":",
+         "{ \"name\": \"Egger\", \"score\": ",
+         "{ \"name\": \"Aigner\", \"score\":",
+         "{ \"name\": \"Jojo\", \"score\": ",
+         "{ \"name\": \"Lisa\", \"score\":  ",
+         "{ \"name\": \"Fabienne\", \"score\": ",
+        };
+          
 
+        System.Random rnd = new System.Random();
+        array = array.OrderBy(x => rnd.Next()).ToArray();
+        float score = 4000 * rnd.Next(5,10);
+        foreach(string line in array)
+        {
+            score *= 0.93721f;
+            data += line + (int)score+"},";
+        }
+        data += "{ \"name\": \"Mario\", \"score\": 7207 } ";
+        data += "] }";
         client.Publish(baseTopic + BuildTopic("leaderboard/"+mode), Encode(data));
 
     }
